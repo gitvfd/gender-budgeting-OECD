@@ -129,7 +129,11 @@
           .attr("font-weight", "normal")
           .text(function(d){return d;});
 
-
+	d3.queue()
+	    .defer(d3.json, urls.world)
+	    .defer(d3.tsv, urls.data)
+	    .defer(d3.tsv, urls.country)
+	    .await(render);
 
 	const type = d3.annotationCustomType(
 	  d3.annotationCalloutElbow, 
@@ -287,7 +291,6 @@
 			          	.style("opacity", 0); 
 			});
 
-	  		addAnnotation();
 	}
       
 
@@ -390,6 +393,7 @@
 	}
 
 function buildLabel(){
+	var counter=0;
 	genderData.forEach(function(d){
 		var lat,lon;
 			countryData.forEach(function(k){
@@ -404,12 +408,11 @@ function buildLabel(){
 	  			dy: parseFloat(d.dy),
 	  			dx: parseFloat(d.dx)
 			})
+			counter++;
+			if(counter==genderData.length)
+				addAnnotation();
 	})
-		d3.queue()
-	    .defer(d3.json, urls.world)
-	    .defer(d3.tsv, urls.data)
-	    .defer(d3.tsv, urls.country)
-	    .await(render);
+
 }
 
     
