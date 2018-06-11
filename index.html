@@ -6,10 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="css/site.css">
 	<script src="libs/d3.v4.min.js"></script>
 	<script src="libs/d3.v4.jetpack.min.js"></script>
+  	<script src="libs/d3-annotation.js"></script>
 	<script src="libs/d3-scale-chromatic.v1.min.js"></script>
 	<script src="libs/topojson.v1.min.js"></script>
 	<script src="libs/d3-queue.v3.min.js"></script>
-  	<script src="libs/d3-annotation.js"></script>
 </head>
 
 <body>
@@ -291,7 +291,6 @@
 			          	.style("opacity", 0); 
 			});
 
-	  		addAnnotation();
 	}
       
 
@@ -394,6 +393,7 @@
 	}
 
 function buildLabel(){
+	var counter=0;
 	genderData.forEach(function(d){
 		var lat,lon;
 			countryData.forEach(function(k){
@@ -408,7 +408,11 @@ function buildLabel(){
 	  			dy: parseFloat(d.dy),
 	  			dx: parseFloat(d.dx)
 			})
+			counter++;
+			if(counter==genderData.length)
+				addAnnotation();
 	})
+
 }
 
     
