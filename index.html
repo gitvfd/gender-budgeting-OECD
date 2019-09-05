@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<h1>Who does Gender Budgeting in the OECD in 2018?</h1>
+	<h1>Who does <span id="genderBudgDef"><b>Gender Budgeting</b></span> in the OECD in 2019?</h1>
 	<div id="genderBudgetingMap"></div>
 </body>
 <script type="text/javascript">
@@ -426,6 +426,28 @@ function addAnnotation(){
 		  .attr("class", "annotation-group")
 		  .call(makeSymbols)**/
 }
+
+d3.select("#genderBudgDef")
+	.on('mouseover', function (d) {
+
+			var htmlText = "Gender budgeting is a way for governments to <b>promote equality through the budget process</b>. Since every ministry and level of government has a budget, planning the budget with the promotion of gender equality in mind can help policy makers address a range of inequalities that have become embedded in public policies and resource allocations." ;
+			
+		divMap.transition()
+			.duration(250)
+			.style("opacity", .9); 
+
+			
+			divMap.html(htmlText)
+				.style("left", (d3.event.pageX) + 28 + "px")
+				.style("top", (d3.event.pageY - 28) + "px");
+		
+	}).on('mouseout', function (d) {
+
+		divMap.transition()
+			.duration(250)
+			.style("opacity", 0);
+	});
+
 </script>
 
 <script>
