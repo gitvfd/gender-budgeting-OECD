@@ -44,6 +44,10 @@ div.tooltip {
       -moz-opacity:0.90;
 }
 
+#genderBudgDef{
+  cursor: help;
+}
+
 #world {
   /**stroke: #deeaf1;**/
   stroke-width: 0px;
